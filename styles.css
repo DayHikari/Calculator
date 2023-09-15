@@ -1,0 +1,42 @@
+body {
+    width: 100%;
+    height: 100%;
+}
+
+div {
+    border: 1px solid black;
+    margin: 10px;
+}
+
+.buttons {
+    width: 100%
+    height 100%
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.numbers {
+    width: 500px;
+    height: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: linen;
+}
+
+.numbers div {
+    width: 30%;
+    height: 19%
+    margin: 0px;
+    padding: 0px;
+}
+
+.operators {
+    width: 300px;
+    height 1000px;
+    background-color: cyan;
+}
+
+.operators div {
+    width: 80%
+    height: 100px;
+}
