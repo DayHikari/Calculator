@@ -46,9 +46,21 @@ div {
 
 .numbers div {
     width: 30%;
-    height: 19%;
+    height: 20%;
     margin: 5px;
     padding: 0px;
+
+}
+
+a {
+    width: 100%;
+    height: 100%;
+}
+
+h2 {
+    width: 100%;
+    height: 100%;
+    padding-top: 60px;
 }
 
 
@@ -63,6 +75,3 @@ div {
     height: 15%;
 }
 
-h2 {
-    padding-top: 40%;
-}
