@@ -11,10 +11,11 @@ const six = 6;
 const seven = 7;
 const eight = 8;
 const nine = 9;
+const plus = "+";
 
+let test = zero + plus + three + six;
+console.log(test)
 
-
-
-function add () {
+function calculate(value) {
     
 }
