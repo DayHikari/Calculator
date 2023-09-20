@@ -4,29 +4,61 @@ let leftNumber = "";
 let calcOperator = "";
 let rightNumber = "";
 let calcNumber = "";
+let screenValue = document.getElementById("screenValue");
+
+//Function to update the screen with the current values
+function updateScreen () {
+    if (calcNumber === "") {
+        screenValue.textContent = leftNumber + calcOperator + rightNumber;
+    } else {
+        screenValue.textContent = calcNumber + calcOperator + rightNumber;
+    }
+}
 
 //function to load the inputted numbers into variables
 function calcLoader(input) {
     //Depending on what has been loaded already, determine where the number is to be loaded
     //A series of nested if statements should work
-    if (leftNumber === "") {
-        //Bug - if someone does an operator first, it will load it onto leftNumber
-        //Add another condition that input must be a number
-        leftNumber += input;
-        console.log(leftNumber + " -first lN if");
-    } else {
-        if (calcOperator === "") {
-            if (isNaN(input)) {
-                calcOperator += input;
-                console.log(calcOperator + " -calcOp");
-            } else {
-                leftNumber += input;
-                console.log(leftNumber + " -second lN if")
-            }
-        } else {
+    if (calcNumber !== "") {
+        if (isNaN(input)) {
+                calcOperator = input;
+                updateScreen();
+                console.log(calcOperator + " -ans calcOp");
+        } else if (calcOperator !== "") {
             //Bug - same as first if, need to specify that input must be a number
             rightNumber += input;
+            updateScreen();
+            console.log(rightNumber + " -ans rN if");
+        } else {
+            clearAll();
+            leftNumber += input;
+            updateScreen();
+            console.log(leftNumber + " -ans restart lN if")
+        }
+    } else {
+        if (leftNumber === "" && isNaN(input)) {
+            alert("Please enter a number first")
+        } else if (leftNumber === "") {
+                //Bug - if someone does an operator first, it will load it onto leftNumber - addressed
+                //Add another condition that input must be a number - not needed
+            leftNumber += input;
+            updateScreen();
+            console.log(leftNumber + " -first lN if");
+        } else {
+            if (isNaN(input)) {
+                calcOperator = input;
+                updateScreen();
+                console.log(calcOperator + " -calcOp");
+            } else if (calcOperator === ""){
+                leftNumber += input;
+                updateScreen();
+                console.log(leftNumber + " -second lN if")
+            } else {
+                //Bug - s ame as first if, need to specify that input must be a number - addressed
+            rightNumber += input;
+            updateScreen();
             console.log(rightNumber + " -rN if");
+            }
         }
     }
 }
@@ -35,23 +67,60 @@ function calcLoader(input) {
 //will convert left and right number variables to numbers
 //will use the calcOperator variable to decide the operator to use by using a switch
 function calculate() {
-    switch (calcOperator) {
-        case "+":
-            console.log(parseFloat(leftNumber) + parseFloat(rightNumber));
-            calcNumber = parseFloat(leftNumber) + parseFloat(rightNumber);
-            break;
-        case "-":
-            console.log(parseFloat(leftNumber) - parseFloat(rightNumber));
-            calcNumber = parseFloat(leftNumber) - parseFloat(rightNumber);
-            break;
-        case "*":
-            console.log(parseFloat(leftNumber) * parseFloat(rightNumber));
-            calcNumber = parseFloat(leftNumber) * parseFloat(rightNumber);
-            break;
-        case "/":
-            console.log(parseFloat(leftNumber) / parseFloat(rightNumber));
-            calcNumber = parseFloat(leftNumber) / parseFloat(rightNumber);
-            break;
+    if (calcNumber === "")
+        switch (calcOperator) {
+            case "+":
+                console.log(parseFloat(leftNumber) + parseFloat(rightNumber));
+                calcNumber = parseFloat(leftNumber) + parseFloat(rightNumber);
+                clearCalc();
+                updateScreen();
+                break;
+            case "-":
+                console.log(parseFloat(leftNumber) - parseFloat(rightNumber));
+                calcNumber = parseFloat(leftNumber) - parseFloat(rightNumber);
+                clearCalc();
+                updateScreen();
+                break;
+            case "*":
+                console.log(parseFloat(leftNumber) * parseFloat(rightNumber));
+                calcNumber = parseFloat(leftNumber) * parseFloat(rightNumber);
+                clearCalc();
+                updateScreen();
+                break;
+            case "/":
+                console.log(parseFloat(leftNumber) / parseFloat(rightNumber));
+                calcNumber = parseFloat(leftNumber) / parseFloat(rightNumber);
+                clearCalc();
+                updateScreen();
+                break;
+    } else {
+        switch (calcOperator) {
+            case "+":
+                console.log(parseFloat(calcNumber) + parseFloat(rightNumber));
+                calcNumber = parseFloat(calcNumber) + parseFloat(rightNumber);
+                clearCalc();
+                updateScreen();
+                break;
+            case "-":
+                console.log(parseFloat(calcNumber) - parseFloat(rightNumber));
+                calcNumber = parseFloat(calcNumber) - parseFloat(rightNumber);
+                clearCalc();
+                updateScreen();
+                break;
+            case "*":
+                console.log(parseFloat(calcNumber) * parseFloat(rightNumber));
+                calcNumber = parseFloat(calcNumber) * parseFloat(rightNumber);
+                clearCalc();
+                updateScreen();
+                break;
+            case "/":
+                console.log(parseFloat(calcNumber) / parseFloat(rightNumber));
+                calcNumber = parseFloat(calcNumber) / parseFloat(rightNumber);
+                clearCalc();
+                updateScreen();
+                break;
+        }
+
     }
 }
 
@@ -63,26 +132,77 @@ function clearAll () {
     calcOperator = "";
     rightNumber = "";
     calcNumber = "";
+    updateScreen();
+}
+
+function clearCalc () {
+    leftNumber = "";
+    calcOperator = "";
+    rightNumber = "";
 }
 
 
-//Tests
-calcLoader(6);
-console.log(leftNumber);
-calcLoader(9);
-console.log(leftNumber);
-calcLoader("+");
-console.log(leftNumber, calcOperator);
-calcLoader(4);
-console.log(leftNumber, calcOperator, rightNumber);
-calcLoader(2);
-console.log(leftNumber, calcOperator, rightNumber);
-calcLoader(0);
-console.log(leftNumber, calcOperator, rightNumber);
-calculate();
-console.log(calcNumber);
-clearAll();
-console.log(leftNumber, calcOperator, rightNumber, calcNumber)
+//DOM manipulations
+
+const zero = document.getElementById("zero");
+const one = document.getElementById("one");
+const two = document.getElementById("two");
+const three = document.getElementById("three");
+const four = document.getElementById("four");
+const five = document.getElementById("five");
+const six = document.getElementById("six");
+const seven = document.getElementById("seven");
+const eight = document.getElementById("eight");
+const nine = document.getElementById("nine");
+const plus = document.getElementById("plus");
+const minus = document.getElementById("minus");
+const divide = document.getElementById("divide");
+const multiply = document.getElementById("multiply");
+const equals = document.getElementById("equals");
+const clear = document.getElementById("clear");
+
+zero.addEventListener("click", function() {calcLoader(0);});
+one.addEventListener("click", function() {calcLoader(1);});
+two.addEventListener("click", function() {calcLoader(2);});
+three.addEventListener("click", function() {calcLoader(3);});
+four.addEventListener("click", function() {calcLoader(4);});
+five.addEventListener("click", function() {calcLoader(5);});
+six.addEventListener("click", function() {calcLoader(6);});
+seven.addEventListener("click", function() {calcLoader(7);});
+eight.addEventListener("click", function() {calcLoader(8);});
+nine.addEventListener("click", function() {calcLoader(9);});
+plus.addEventListener("click", function() {calcLoader("+");});
+minus.addEventListener("click", function() {calcLoader("-");});
+multiply.addEventListener("click", function() {calcLoader("*");});
+divide.addEventListener("click", function() {calcLoader("/");});
+
+equals.addEventListener("click", function() {calculate();})
+
+clear.addEventListener("click", function() {clearAll()})
+
+
+
+
+
+
+
+// //Tests
+// calcLoader(6);
+// console.log(leftNumber);
+// calcLoader(9);
+// console.log(leftNumber);
+// calcLoader("+");
+// console.log(leftNumber, calcOperator);
+// calcLoader(4);
+// console.log(leftNumber, calcOperator, rightNumber);
+// calcLoader(2);
+// console.log(leftNumber, calcOperator, rightNumber);
+// calcLoader(0);
+// console.log(leftNumber, calcOperator, rightNumber);
+// calculate();
+// console.log(calcNumber);
+// clearAll();
+// console.log(leftNumber, calcOperator, rightNumber, calcNumber)
 
 
 
@@ -90,6 +210,7 @@ console.log(leftNumber, calcOperator, rightNumber, calcNumber)
 
 //Old Code
 // //number button variables
+//the consts below were re-used for the DOM manipulations
 // const zero = 0;
 // const one = 1;
 // const two = 2;

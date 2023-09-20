@@ -15,10 +15,11 @@ body {
     justify-content: center;
     margin: auto;
     text-align: center;
+    background: rgb(207, 201, 201);
 }
 
 div {
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     margin: 10px;
 }
 
@@ -29,7 +30,14 @@ h1 {
 #screen {
     width: 51%;
     height: 150px;
-    background-color: rgb(116, 101, 18);
+    background-color: rgb(255, 255, 255);
+    text-align: right;
+    border: 1px solid black;
+}
+
+#screenValue {
+    font-size: 80px;
+    padding-top: 25px;
 }
 
 #buttons {
@@ -42,7 +50,7 @@ h1 {
 }
 
 #number-buttons{
-    background: red;
+    /*background: red;*/
     width: 600px;
     height: 1000px;
 }
@@ -62,7 +70,7 @@ button {
 #operators {
     width: 300px;
     height: 1000px;
-    background-color: cyan;
+    /*background-color: cyan;*/
 }
 
 #operators button {
