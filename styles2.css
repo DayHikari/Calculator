@@ -1,0 +1,23 @@
+body {
+    width: 100%;
+    height: 100%;
+    background: linen;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+
+h1{
+    width: 100%;
+}
+
+#screen {
+    width: 90%;
+    height: 100px;
+    background-color: white;
+}
+
+#buttons {
+    
+}

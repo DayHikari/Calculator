@@ -14,6 +14,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     margin: auto;
+    text-align: center;
 }
 
 div {
@@ -21,13 +22,18 @@ div {
     margin: 10px;
 }
 
-.screen {
+h1 {
     width: 100%;
-    height: 150px;
 }
 
-.buttons {
-    width: 100%;
+#screen {
+    width: 51%;
+    height: 150px;
+    background-color: rgb(116, 101, 18);
+}
+
+#buttons {
+    width: 51%;
     height: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -35,42 +41,31 @@ div {
     text-align: center;
 }
 
-.numbers {
+#number-buttons{
+    background: red;
     width: 600px;
     height: 1000px;
-    display: flex;
-    flex-wrap: wrap;
-    background-color: linen;
-    justify-content: center;
 }
 
-.numbers div {
+button {
     width: 30%;
-    height: 20%;
+    height: 23%;
     margin: 5px;
     padding: 0px;
 
 }
 
-a {
-    width: 100%;
-    height: 100%;
+#spacer {
+    width: 50px;
 }
 
-h2 {
-    width: 100%;
-    height: 100%;
-    padding-top: 60px;
-}
-
-
-.operators {
+#operators {
     width: 300px;
     height: 1000px;
     background-color: cyan;
 }
 
-.operators div {
+#operators button {
     width: 250px;
     height: 15%;
 }
