@@ -20,12 +20,19 @@ function calcLoader(input) {
     //Depending on what has been loaded already, determine where the number is to be loaded
     //A series of nested if statements should work
     if (calcNumber !== "") {
-        if (isNaN(input)) {
+        if (isNaN(input) && input !== ".") {
                 calcOperator = input;
                 updateScreen();
                 console.log(calcOperator + " -ans calcOp");
         } else if (calcOperator !== "") {
-            //Bug - same as first if, need to specify that input must be a number
+            //Bug - same as first if, need to specify that input must be a number - addressed
+            if (input === ".") {
+                for (let i = 0; i < rightNumber.length; i++) {
+                    if (rightNumber[i] === ".") {
+                        return alert("A number cannot have two decimal points");
+                    }
+                }
+            }
             rightNumber += input;
             updateScreen();
             console.log(rightNumber + " -ans rN if");
@@ -45,16 +52,30 @@ function calcLoader(input) {
             updateScreen();
             console.log(leftNumber + " -first lN if");
         } else {
-            if (isNaN(input)) {
+            if (isNaN(input) && input !== ".") {
                 calcOperator = input;
                 updateScreen();
                 console.log(calcOperator + " -calcOp");
             } else if (calcOperator === ""){
+                if (input === ".") {
+                    for (let i = 0; i < leftNumber.length; i++) {
+                        if (leftNumber[i] === ".") {
+                            return alert("A number cannot have two decimal points");
+                        }
+                    }
+                }
                 leftNumber += input;
                 updateScreen();
                 console.log(leftNumber + " -second lN if")
             } else {
                 //Bug - s ame as first if, need to specify that input must be a number - addressed
+                if (input === ".") {
+                    for (let i = 0; i < rightNumber.length; i++) {
+                        if (rightNumber[i] === ".") {
+                            return alert("A number cannot have two decimal points");
+                        }
+                    }
+                }
             rightNumber += input;
             updateScreen();
             console.log(rightNumber + " -rN if");
@@ -154,6 +175,7 @@ const six = document.getElementById("six");
 const seven = document.getElementById("seven");
 const eight = document.getElementById("eight");
 const nine = document.getElementById("nine");
+const point = document.getElementById("point");
 const plus = document.getElementById("plus");
 const minus = document.getElementById("minus");
 const divide = document.getElementById("divide");
@@ -171,6 +193,8 @@ six.addEventListener("click", function() {calcLoader(6);});
 seven.addEventListener("click", function() {calcLoader(7);});
 eight.addEventListener("click", function() {calcLoader(8);});
 nine.addEventListener("click", function() {calcLoader(9);});
+point.addEventListener("click", function() {calcLoader(".");});
+
 plus.addEventListener("click", function() {calcLoader("+");});
 minus.addEventListener("click", function() {calcLoader("-");});
 multiply.addEventListener("click", function() {calcLoader("*");});
